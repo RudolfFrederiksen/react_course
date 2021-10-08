@@ -1,7 +1,7 @@
 import { ExpenseItem, IExpenseItem } from "../ExpenseItem/ExpenseItem";
 import React from "react";
 import "./ExpenseList.scss";
-import { Card } from "../shared/Card/Card";
+import { Card } from "../../shared/Card/Card";
 
 interface IExpenseListProps {
     list: Array<IExpenseItem>;

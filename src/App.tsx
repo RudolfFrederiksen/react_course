@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.scss";
-import { IExpenseItem } from "./components/ExpenseItem/ExpenseItem";
-import { ExpenseList } from "./components/ExpenseList/ExpenseList";
+import { IExpenseItem } from "./components/Expenses/ExpenseItem/ExpenseItem";
+import { ExpenseList } from "./components/Expenses/ExpenseList/ExpenseList";
+import { NewExpense } from "./components/Expenses/NewExpense/NewExpense";
 
 function App() {
     const expenses: Array<IExpenseItem> = [
@@ -15,10 +16,16 @@ function App() {
             title: "Rain jacket",
             amount: 75,
         },
+        {
+            date: new Date(2021, 9, 10),
+            title: "Groceries",
+            amount: 50,
+        },
     ];
 
     return (
         <div className="App">
+            <NewExpense />
             <ExpenseList list={expenses} />
         </div>
     );
