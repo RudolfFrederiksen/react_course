@@ -1,5 +1,5 @@
 import React from "react";
-import { BasePropsWithChildren } from "../types/utils";
+import { BasePropsWithChildren } from "../../../types/propsUtils";
 import "./Card.scss";
 
 interface ICard {
