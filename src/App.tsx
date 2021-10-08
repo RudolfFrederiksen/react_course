@@ -1,16 +1,17 @@
 import React from "react";
 import "./App.scss";
-import ExpenseItem, { IExpenseItem } from "./components/ExpenseItem/ExpenseItem";
+import { IExpenseItem } from "./components/ExpenseItem/ExpenseItem";
+import { ExpenseList } from "./components/ExpenseList/ExpenseList";
 
 function App() {
     const expenses: Array<IExpenseItem> = [
         {
-            date: new Date(2021, 10, 5),
+            date: new Date(2021, 9, 5),
             title: "Theater",
             amount: 30,
         },
         {
-            date: new Date(2021, 10, 11),
+            date: new Date(2021, 9, 11),
             title: "Rain jacket",
             amount: 75,
         },
@@ -18,10 +19,7 @@ function App() {
 
     return (
         <div className="App">
-            <h1> hello world</h1>
-            {expenses.map((item, idx) => (
-                <ExpenseItem date={item.date} amount={item.amount} title={item.title} key={idx}></ExpenseItem>
-            ))}
+            <ExpenseList list={expenses} />
         </div>
     );
 }
