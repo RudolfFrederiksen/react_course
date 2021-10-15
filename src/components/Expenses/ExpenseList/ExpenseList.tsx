@@ -11,7 +11,7 @@ export function ExpenseList(props: IExpenseListProps) {
     return (
         <Card className="expenses">
             {props.list.map((item, idx) => (
-                <ExpenseItem date={item.date} amount={item.amount} title={item.title} key={idx} />
+                <ExpenseItem id={item.id} date={item.date} amount={item.amount} title={item.title} key={idx} />
             ))}
         </Card>
     );

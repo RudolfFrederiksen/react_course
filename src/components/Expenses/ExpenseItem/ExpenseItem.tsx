@@ -4,6 +4,7 @@ import { Card } from "../../shared/Card/Card";
 import { useState } from "react";
 
 export interface IExpenseItem {
+    id: string;
     date: Date;
     title: string;
     amount: number;
