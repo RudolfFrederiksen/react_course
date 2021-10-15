@@ -46,22 +46,15 @@ export function ExpenseForm(props: IExpenseFormProps) {
             <div className="controls">
                 <div className="control">
                     <label>Title</label>
-                    <input type="text" required={true} value={title} onChange={titleHandler} />
+                    <input type="text" required value={title} onChange={titleHandler} />
                 </div>
                 <div className="control">
                     <label>Amount</label>
-                    <input type="number" required={true} value={amount} onChange={amountHandler} />
+                    <input type="number" required value={amount} onChange={amountHandler} />
                 </div>
                 <div className="control">
                     <label>Date</label>
-                    <input
-                        type="date"
-                        required={true}
-                        value={date}
-                        min="2019-01-01"
-                        max="2022-12-31"
-                        onChange={dateHandler}
-                    />
+                    <input type="date" required value={date} min="2019-01-01" max="2022-12-31" onChange={dateHandler} />
                 </div>
             </div>
             <div className="actions">
