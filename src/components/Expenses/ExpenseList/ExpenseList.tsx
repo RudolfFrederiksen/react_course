@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./ExpenseList.scss";
 import { Card } from "../../shared/Card/Card";
 import ExpenseFilter from "../ExpenseFilter/ExpenseFilter";
+import ListRenderer from "../../shared/List/ListRendered";
 
 interface IExpenseListProps {
     list: Array<IExpenseItem>;
@@ -15,14 +16,17 @@ export function ExpenseList(props: IExpenseListProps) {
         setYearFilter(year);
     };
 
+    const filteredList = props.list.filter((item) =>
+        yearFilter ? item.date.getFullYear() === Number(yearFilter) : true
+    );
     return (
         <Card className="expenses">
             <ExpenseFilter defaultYear={yearFilter} onYearUpdate={yearFilterHandler} />
-            {props.list
-                .filter((item) => (yearFilter ? item.date.getFullYear() === Number(yearFilter) : true))
-                .map((item, idx) => (
+            <ListRenderer list={filteredList}>
+                {filteredList.map((item, idx) => (
                     <ExpenseItem id={item.id} date={item.date} amount={item.amount} title={item.title} key={idx} />
                 ))}
+            </ListRenderer>
         </Card>
     );
 }
