@@ -29,7 +29,6 @@ export function ExpenseForm(props: IExpenseFormProps) {
             amount: Number(amount),
             date: new Date(date),
         };
-        console.log(data);
 
         props.submitHandler(data);
         resetFields();

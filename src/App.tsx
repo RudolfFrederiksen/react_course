@@ -14,13 +14,13 @@ function App() {
         },
         {
             id: "2",
-            date: new Date(2021, 9, 11),
+            date: new Date(2020, 9, 11),
             title: "Rain jacket",
             amount: 75,
         },
         {
             id: "3",
-            date: new Date(2021, 9, 10),
+            date: new Date(2019, 9, 10),
             title: "Groceries",
             amount: 50,
         },
