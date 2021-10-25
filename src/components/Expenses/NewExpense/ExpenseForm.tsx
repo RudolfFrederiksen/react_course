@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IExpenseItem } from "../ExpenseItem/ExpenseItem";
 
 interface IExpenseFormProps {
+    cancelHandler: () => void;
     submitHandler: (expenseItem: IExpenseItem) => void;
 }
 
@@ -31,13 +32,8 @@ export function ExpenseForm(props: IExpenseFormProps) {
         };
 
         props.submitHandler(data);
-        resetFields();
-    };
-
-    const resetFields = (): void => {
-        setTitle("");
-        setAmount("");
-        setDate("");
+        // close form handler
+        props.cancelHandler();
     };
 
     return (
@@ -57,6 +53,9 @@ export function ExpenseForm(props: IExpenseFormProps) {
                 </div>
             </div>
             <div className="actions">
+                <button type="button" onClick={props.cancelHandler}>
+                    Cancel
+                </button>
                 <button type="submit">Add expense</button>
             </div>
         </form>
