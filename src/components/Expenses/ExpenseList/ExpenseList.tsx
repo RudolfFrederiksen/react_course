@@ -4,6 +4,7 @@ import "./ExpenseList.scss";
 import { Card } from "../../shared/Card/Card";
 import ExpenseFilter from "../ExpenseFilter/ExpenseFilter";
 import ListRenderer from "../../shared/List/ListRendered";
+import ExpenseChart from "../ExpenseChart/ExpenseChart";
 
 interface IExpenseListProps {
     list: Array<IExpenseItem>;
@@ -22,6 +23,7 @@ export function ExpenseList(props: IExpenseListProps) {
     return (
         <Card className="expenses">
             <ExpenseFilter defaultYear={yearFilter} onYearUpdate={yearFilterHandler} />
+            <ExpenseChart expenseItems={filteredList} />
             <ListRenderer list={filteredList}>
                 {filteredList.map((item, idx) => (
                     <ExpenseItem id={item.id} date={item.date} amount={item.amount} title={item.title} key={idx} />
