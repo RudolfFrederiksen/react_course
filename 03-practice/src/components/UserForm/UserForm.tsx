@@ -25,8 +25,6 @@ export const UserForm = (props: IUserFormProps) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        // todo: check validity
-
         const user: User = {
             id: new Date().getTime().toString(),
             name,
