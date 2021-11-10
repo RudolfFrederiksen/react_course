@@ -40,7 +40,6 @@ const AddUser = (props) => {
     };
 
     const errorHandler = () => {
-        console.log("test");
         setError(null);
     };
 
