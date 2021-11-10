@@ -8,7 +8,7 @@ interface IListRendererProps {
 }
 
 const ListRenderer = (props: BasePropsWithChildren & IListRendererProps) => {
-    const classes = "list-renderer " + props.className;
+    const classes = "list-renderer " + (props.className ?? "");
 
     return (
         <div className={classes}>
