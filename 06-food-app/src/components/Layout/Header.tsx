@@ -1,14 +1,13 @@
 import mealsImg from "../../assets/meals.jpeg";
 import classes from "./Header.module.scss";
+import HeaderCartButton from "./HeaderCartButton";
 
-interface IHeaderProps {}
-
-const Header = (props: IHeaderProps) => {
+const Header = () => {
     return (
         <>
             <header className={classes.header}>
                 <h1>Food app exercise</h1>
-                <button>Cart</button>
+                <HeaderCartButton />
             </header>
             <div className={classes["main-image"]}>
                 <img src={mealsImg} alt="table of various meals" />
