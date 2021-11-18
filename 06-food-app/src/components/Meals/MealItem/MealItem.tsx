@@ -1,6 +1,6 @@
 import { IMeal } from "../../../assets/dummy-meals";
 import classes from "./MealItem.module.scss";
-import MealItemsForm from "./MealItemsForm";
+import MealItemForm from "./MealItemForm";
 
 interface IMealItemsProps {
     meal: IMeal;
@@ -17,7 +17,7 @@ const MealItem = (props: IMealItemsProps) => {
                 <div className={classes.price}>{price}</div>
             </div>
             <div>
-                <MealItemsForm />
+                <MealItemForm mealId={props.meal.id}/>
             </div>
         </li>
     );
