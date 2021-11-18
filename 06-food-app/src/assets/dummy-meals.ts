@@ -1,4 +1,4 @@
-interface IMeal {
+export interface IMeal {
     id: string;
     name: string;
     description: string;
