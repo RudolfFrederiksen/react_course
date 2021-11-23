@@ -1,5 +1,7 @@
 import Modal from "../UI/Modal/Modal";
 import classes from "./Cart.module.scss";
+import { useContext } from "react";
+import CartContext from "../../store/cart-context";
 
 export interface ICartItem {
     id: string;
@@ -13,23 +15,16 @@ interface ICartProps {
 }
 
 const Cart = (props: ICartProps) => {
-    const cartItems = (
-        [
-            {
-                id: "m1",
-                name: "Sushi",
-                amount: 2,
-                price: 22.99,
-            },
-        ] as Array<ICartItem>
-    ).map((item) => <li key={item.id}>{item.name}</li>);
+    const cartCtx = useContext(CartContext);
+
+    const cartItems = cartCtx?.items.map((item) => <li key={item.id}>{item.name}</li>);
 
     return (
         <Modal onBackdropClick={props.onClose}>
             <ul className={classes.cartItems}>{cartItems}</ul>
             <div className={classes.total}>
                 <span>Total Amount</span>
-                <span>35.62</span>
+                <span>{cartCtx?.totalAmount}</span>
             </div>
             <div className={classes.actions}>
                 <button className={classes.buttonAlt} onClick={props.onClose}>

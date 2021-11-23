@@ -1,9 +1,11 @@
 import classes from "./Input.module.scss";
+import React from "react";
 
 interface IInputProps {
     label: string;
     input: {
         id: string;
+        name: string;
         type: string;
         min?: number;
         max?: number;
@@ -12,13 +14,13 @@ interface IInputProps {
     };
 }
 
-const Input = (props: IInputProps) => {
+const Input = React.forwardRef<HTMLInputElement, IInputProps>((props: IInputProps, ref) => {
     return (
         <div className={classes.input}>
             <label htmlFor={props.input.id}>{props.label}</label>
-            <input {...props.input} />
+            <input ref={ref} {...props.input} />
         </div>
     );
-};
+});
 
 export default Input;
