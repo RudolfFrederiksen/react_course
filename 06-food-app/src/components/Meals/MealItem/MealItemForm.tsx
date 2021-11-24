@@ -1,27 +1,27 @@
 import Input from "../../UI/Input/Input";
 import classes from "./MealItemForm.module.scss";
-import React, { useContext, useRef } from "react";
-import CartContext from "../../../store/cart-context";
-import { IMeal } from "../../../assets/dummy-meals";
-
+import React, { useRef, useState } from "react";
 interface IMealItemFormProps {
     mealId: string;
-    meal: IMeal;
+    onSubmit: (amount: number) => void;
 }
 
 const MealItemForm = (props: IMealItemFormProps) => {
-    const cartCtx = useContext(CartContext);
     const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+
+    const [amountIsValid, setAmountIsValid] = useState(true);
 
     const submitHandler = (e: React.SyntheticEvent) => {
         e.preventDefault();
 
-        cartCtx?.addItem({
-            id: props.meal.id,
-            price: props.meal.price,
-            name: props.meal.name,
-            amount: Number(inputRef.current.value),
-        });
+        const amount = inputRef.current.value;
+        const amountNumber: number = +amount;
+        if (amount.trim().length === 0 || amountNumber < 0 || amountNumber > 5) {
+            setAmountIsValid(false);
+            return;
+        }
+
+        props.onSubmit(amountNumber);
     };
 
     return (
@@ -40,6 +40,8 @@ const MealItemForm = (props: IMealItemFormProps) => {
                 }}
             />
             <button type="submit">Add</button>
+
+            {!amountIsValid && <p>Enter a valid amount (1-5)</p>}
         </form>
     );
 };
