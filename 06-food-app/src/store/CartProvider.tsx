@@ -18,23 +18,25 @@ export enum CartActionTypes {
     RemoveItem = "REMOVE_ITEM",
 }
 
+// todo: add payload interfaces
 const cartReducer = (state: ICartState, action: { type: CartActionTypes; payload: any }) => {
     if (action.type === CartActionTypes.AddItem) {
-        console.log(action.type);
         const newItem = action.payload.item;
         const existingItemIdx = state.items.findIndex((cartItem) => cartItem.id === newItem.id);
+
+        // recompute total
+        const updatedTotal = state.totalAmount + newItem.price * newItem.amount;
 
         // update cart items
         let updatedItems;
         if (existingItemIdx > -1) {
-            // fixme: consecutive add action increase amount too many times
             updatedItems = state.items.concat();
-            updatedItems[existingItemIdx].amount++;
+            const updatedItem = { ...updatedItems[existingItemIdx] };
+            updatedItem.amount = updatedItem.amount + newItem.amount;
+            updatedItems[existingItemIdx] = updatedItem;
         } else {
             updatedItems = state.items.concat(newItem);
         }
-        // recompute total
-        const updatedTotal = updatedItems.reduce((acc, item) => acc + item.price * item.amount, 0);
 
         return {
             items: updatedItems,
