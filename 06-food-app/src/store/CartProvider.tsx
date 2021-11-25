@@ -29,7 +29,7 @@ const cartReducer = (state: ICartState, action: { type: CartActionTypes; payload
         if (existingItemIdx > -1) {
             // fixme: consecutive add action increase amount too many times
             updatedItems = state.items.concat();
-            updatedItems[existingItemIdx].amount = updatedItems[existingItemIdx].amount + 1;
+            updatedItems[existingItemIdx].amount++;
         } else {
             updatedItems = state.items.concat(newItem);
         }
