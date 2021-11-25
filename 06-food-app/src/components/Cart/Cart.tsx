@@ -18,9 +18,12 @@ interface ICartProps {
 const Cart = (props: ICartProps) => {
     const cartCtx = useContext(CartContext);
 
-    // todo: handle addition and removal
-    const cartItemAddHandler = () => {};
-    const cartItemRemoveHandler = () => {};
+    const cartItemAddHandler = (item: ICartItem) => {
+        cartCtx?.addItem({ ...item, amount: 1 });
+    };
+    const cartItemRemoveHandler = (id: string) => {
+        cartCtx?.removeItem(id);
+    };
 
     const cartItems = cartCtx?.items.map((item) => (
         <CartItem
@@ -28,7 +31,7 @@ const Cart = (props: ICartProps) => {
             name={item.name}
             amount={item.amount}
             price={item.price}
-            onAdd={cartItemAddHandler.bind(null, item.id)}
+            onAdd={cartItemAddHandler.bind(null, item)}
             onRemove={cartItemRemoveHandler.bind(null, item.id)}
         />
     ));

@@ -44,13 +44,29 @@ const cartReducer = (state: ICartState, action: { type: CartActionTypes; payload
         };
     }
     if (action.type === CartActionTypes.RemoveItem) {
-        const idx = state.items.findIndex((item) => item.id === action.payload.id);
-        state.items.splice(idx, 1);
+        const updatedItems = [...state.items];
+        const itemIdx = updatedItems.findIndex((item) => item.id === action.payload.id);
+        const existingItem = updatedItems[itemIdx];
 
-        return state;
+        // recompute total
+        const updatedTotal = state.totalAmount - existingItem.price;
+
+        // update cart items
+        if (updatedItems[itemIdx].amount - 1 === 0) {
+            updatedItems.splice(itemIdx, 1);
+        } else {
+            const updatedItem = { ...updatedItems[itemIdx] };
+            updatedItem.amount--;
+            updatedItems[itemIdx] = updatedItem;
+        }
+
+        return {
+            items: updatedItems,
+            totalAmount: updatedTotal,
+        };
     }
 
-    return state;
+    return defaultCartState;
 };
 
 const CartProvider = (props: BasePropsWithChildren) => {
@@ -60,7 +76,7 @@ const CartProvider = (props: BasePropsWithChildren) => {
         dispatchCartAction({ type: CartActionTypes.AddItem, payload: { item } });
     };
     const handleRemoveItem = (id: string) => {
-        dispatchCartAction({ type: CartActionTypes.AddItem, payload: { id } });
+        dispatchCartAction({ type: CartActionTypes.RemoveItem, payload: { id } });
     };
 
     const cartBaseContext: ICartContext = {
